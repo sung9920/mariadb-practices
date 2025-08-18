@@ -1,7 +1,7 @@
 --
 -- subquery
 --
-
+ 
 --
 -- 1) select (subquery) from t;
 --    insert into t values(val1, val2, (subquery), val3);
