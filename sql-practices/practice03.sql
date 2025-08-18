@@ -77,17 +77,28 @@ order by a.salary desc;
 select b.title, avg(a.salary) as '평균급여'
 from salaries a, titles b
 where a.emp_no = b.emp_no
-and avg(a.salary) >= 50000
 and a.to_date = '9999-01-01'
 group by b.title
-order by avg(a.salary) desc;
+having 평균급여 >= 50000
+order by 평균급여 desc;
 
 -- 문제9.
 -- 현재, 부서별 평균급여을 평균급여가 큰 순서대로 부서명과 평균연봉을 출력 하세요.
 
-
+select c.dept_name, avg(a.salary) as '평균급여'
+from salaries a, dept_emp b, departments c
+where a.emp_no = b.emp_no
+and b.dept_no = c.dept_no
+and a.to_date = '9999-01-01'
+group by c.dept_name
+order by 평균급여 desc;
 
 -- 문제10.
 -- 현재, 직책별 평균급여를 평균급여가 큰 직책 순서대로 직책명과 그 평균연봉을 출력 하세요.
 
-
+select b.title, avg(a.salary) as '평균급여'
+from salaries a, titles b
+where a.emp_no = b.emp_no
+and a.to_date = '9999-01-01'
+group by b.title
+order by 평균급여 desc;
