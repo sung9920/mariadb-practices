@@ -29,7 +29,7 @@ public class EmailApp {
 	}
 
 	private static void doList() {
-		System.out.println("do list");
+		
 	}
 
 	private static void doDelete() {
