@@ -1,5 +1,7 @@
 package email;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class EmailApp {
@@ -29,11 +31,19 @@ public class EmailApp {
 	}
 
 	private static void doList() {
-		
+        List<EmailVo> list = new EmailDao().findAll();
+
+        for(EmailVo vo : list) {
+            System.out.println(vo);
+        }
 	}
 
 	private static void doDelete() {
-		System.out.println("do delete");
+        System.out.print("삭제할 id입력: ");
+        Long deleteId = scanner.nextLong();
+
+        new EmailDao().delete(deleteId);
+        doList();
 	}
 
 	private static void doInsert() {
