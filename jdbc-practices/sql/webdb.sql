@@ -5,7 +5,7 @@
 desc dept;
 
 -- select
-select * from dept;
+select id, name from dept;
 
 -- insert
 insert into dept(name) values('UX팀');
