@@ -42,7 +42,7 @@ public class EmailApp {
         System.out.print("삭제할 id입력: ");
         Long deleteId = scanner.nextLong();
 
-        new EmailDao().delete(deleteId);
+        new EmailDao().deleteByEmail(deleteId);
         doList();
 	}
 

@@ -1,6 +1,10 @@
 package email;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,12 +16,7 @@ public class EmailDao {
 		int result = 0;
 		
 		try {
-			// 1. JDBC Driver 로딩
-			Class.forName("org.mariadb.jdbc.Driver");
-			
-			// 2. 연결하기
-			String url  = "jdbc:mariadb://192.168.0.177:3306/webdb";
-			con =  DriverManager.getConnection (url, "webdb", "webdb");
+			con = getConnection();
 			
 			// 3. Statement 준비
 			String sql = "insert into email(first_name, last_name, email) values (?, ?, ?)";
@@ -30,8 +29,6 @@ public class EmailDao {
 			
 			// 5. SQL 실행
 			result = pstmt.executeUpdate();
-		} catch (ClassNotFoundException e) {
-			System.out.println("Driver Class Not Found");
 		} catch (SQLException e) {
 			 System.out.println("error:" + e);
 		} finally {
@@ -58,13 +55,8 @@ public class EmailDao {
         ResultSet rs = null;
 
         try {
-            // 1. JDBC Driver 로딩
-            Class.forName("org.mariadb.jdbc.Driver");
-
-            // 2. 연결하기
-            String url  = "jdbc:mariadb://192.168.0.177:3306/webdb";
-            con =  DriverManager.getConnection (url, "webdb", "webdb");
-
+            con = getConnection();
+            
             // 3. Statement 준비
             String sql = "select * from email";
             pstmt = con.prepareStatement(sql);
@@ -83,8 +75,6 @@ public class EmailDao {
                 list.add(vo);
             }
 
-        } catch (ClassNotFoundException e) {
-            System.out.println("Driver Class Not Found");
         } catch (SQLException e) {
             System.out.println("error:" + e);
         } finally {
@@ -103,18 +93,13 @@ public class EmailDao {
         return list;
     }
 
-    public int delete(Long deleteId) {
+    public int deleteByEmail(Long deleteId) {
         Connection con = null;
         PreparedStatement pstmt = null;
         int result = 0;
-
+        
         try {
-            // 1. JDBC Driver 로딩
-            Class.forName("org.mariadb.jdbc.Driver");
-
-            // 2. 연결하기
-            String url  = "jdbc:mariadb://192.168.0.177:3306/webdb";
-            con =  DriverManager.getConnection (url, "webdb", "webdb");
+        	con = getConnection();
 
             // 3. Statement 준비
             String sql = "delete from email where id = ?";
@@ -125,8 +110,6 @@ public class EmailDao {
 
             // 5. SQL 실행
             result = pstmt.executeUpdate();
-        } catch (ClassNotFoundException e) {
-            System.out.println("Driver Class Not Found");
         } catch (SQLException e) {
             System.out.println("error:" + e);
         } finally {
@@ -143,5 +126,21 @@ public class EmailDao {
         }
 
         return result;
+    }
+    
+    private Connection getConnection() throws SQLException {
+    	Connection con = null;
+    	
+    	try {
+    		Class.forName("org.mariadb.jdbc.Driver");
+    		
+            String url  = "jdbc:mariadb://192.168.0.177:3306/webdb";
+            con =  DriverManager.getConnection (url, "webdb", "webdb");
+    	} catch(ClassNotFoundException e) {
+    		 System.out.println("Driver Class Not Found");
+            
+    	}
+    	
+    	return con;
     }
 }
