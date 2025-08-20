@@ -1,6 +1,5 @@
 package email;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -40,10 +39,8 @@ public class EmailApp {
 
 	private static void doDelete() {
         System.out.print("삭제할 id입력: ");
-        Long deleteId = scanner.nextLong();
-
+        Long deleteId = Long.parseLong(scanner.nextLine());
         new EmailDao().deleteByEmail(deleteId);
-        doList();
 	}
 
 	private static void doInsert() {
