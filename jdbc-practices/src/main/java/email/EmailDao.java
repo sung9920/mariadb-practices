@@ -128,13 +128,51 @@ public class EmailDao {
         return result;
     }
     
-    private Connection getConnection() throws SQLException {
+	public Long count() {
+		Long result = 0L;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = getConnection();
+			
+			String sql = "select count(*) from email";
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getLong(1);
+			}
+		} catch (SQLException e) {
+			 System.out.println("error:" + e);
+		} finally {
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(con != null) {
+					con.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+	
+	private Connection getConnection() throws SQLException {
     	Connection con = null;
     	
     	try {
     		Class.forName("org.mariadb.jdbc.Driver");
     		
-            String url  = "jdbc:mariadb://192.168.0.177:3306/webdb";
+            String url  = "jdbc:mariadb://192.168.0.176:3306/webdb";
             con =  DriverManager.getConnection (url, "webdb", "webdb");
     	} catch(ClassNotFoundException e) {
     		 System.out.println("Driver Class Not Found");
