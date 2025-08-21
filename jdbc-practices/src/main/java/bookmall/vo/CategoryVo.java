@@ -5,7 +5,7 @@ public class CategoryVo {
 	private String name;
 	
 	public CategoryVo(String name) {
-		name = this.name;
+		this.name = name;
 	}
 
 	public Long getNo() {

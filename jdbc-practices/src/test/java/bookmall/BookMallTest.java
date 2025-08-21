@@ -30,9 +30,9 @@ public class BookMallTest {
 	private static UserVo mockUserVo01 = new UserVo("데스트유저01", "test01@test.com", "1234", "010-0000-0000");
 	private static UserVo mockUserVo02 = new UserVo("데스트유저02", "test02@test.com", "1234", "010-1111-1111");
 	
-//	private static CategoryVo mockCategoryVo01 = new CategoryVo("인문");
-//	private static CategoryVo mockCategoryVo02 = new CategoryVo("컴퓨터/IT");
-//	private static CategoryVo mockCategoryVo03 = new CategoryVo("예술");
+	private static CategoryVo mockCategoryVo01 = new CategoryVo("인문");
+	private static CategoryVo mockCategoryVo02 = new CategoryVo("컴퓨터/IT");
+	private static CategoryVo mockCategoryVo03 = new CategoryVo("예술");
 //	
 //	private static BookVo mockBookVo01 = new BookVo("과학혁명의 구조", 20000);
 //	private static BookVo mockBookVo02 = new BookVo("J2EE Development Without EJB", 32000);

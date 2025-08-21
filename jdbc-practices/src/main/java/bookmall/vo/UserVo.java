@@ -8,10 +8,10 @@ public class UserVo {
 	private String phone;
 	
 	public UserVo(String name, String email, String pw, String phone) {
-		name = this.name;
-		email = this.email;
-		pw = this.pw;
-		phone = this.phone;
+		this.name = name;
+		this.email = email;
+		this.pw = pw;
+		this.phone = phone;
 	}
 
 	public Long getNo() {

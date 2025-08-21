@@ -2,7 +2,9 @@ package bookmall.app;
 
 import java.util.List;
 
+import bookmall.dao.CategoryDao;
 import bookmall.dao.UserDao;
+import bookmall.vo.CategoryVo;
 import bookmall.vo.UserVo;
 import bookshop.dao.BookDao;
 import bookshop.vo.BookVo;
@@ -33,16 +35,15 @@ public class BookMallApp {
 
 	private static void installDB() {
 		UserDao userDao = new UserDao();
-
-//		bookDao.deleteAll();
-//		authorDao.deleteAll();
-
 		UserVo userVo = null;
-
-		//
 		userVo = new UserVo("데스트유저01", "test01@test.com", "1234", "010-0000-0000");
 		userDao.insert(userVo);
 
+		
+		CategoryDao categoryDao = new CategoryDao();
+		CategoryVo categoryVo = null;
+		categoryVo = new CategoryVo("인문");
+		categoryDao.insert(categoryVo);
 	}
 
 }

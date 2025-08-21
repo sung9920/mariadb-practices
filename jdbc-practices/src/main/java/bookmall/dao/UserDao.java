@@ -5,22 +5,24 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import bookmall.vo.CartVo;
 import bookmall.vo.UserVo;
+import bookshop.vo.BookVo;
 
 public class UserDao {
 
 	public int insert(UserVo vo) {
-		
+
 		int count = 0;
 
-		try (
-				Connection conn = getConnection();
-				PreparedStatement pstmt1 = conn.prepareStatement("insert into user(name,email,pw,phone) values (?, ?, ?, ?)");
+		try (Connection conn = getConnection();
+				PreparedStatement pstmt1 = conn
+						.prepareStatement("insert into user(name,email,pw,phone) values (?, ?, ?, ?)");
 //				PreparedStatement pstmt2 = conn.prepareStatement("select last_insert_id() from dual");
-				) {
+		) {
 			pstmt1.setString(1, vo.getName());
 			pstmt1.setString(2, vo.getEmail());
 			pstmt1.setString(3, vo.getPw());
@@ -53,14 +55,36 @@ public class UserDao {
 		return con;
 	}
 
-
-	public List<CartVo> findAll() {
-		// TODO 자동 생성된 메소드 스텁
-		return null;
-	}
+//	public List<CartVo> findAll() {
+//		List<UserVo> result = new ArrayList<>();
+//
+//		try (Connection conn = getConnection();
+//				PreparedStatement pstmt = conn.prepareStatement(
+//						"select a.id, a.title, b.name, a.status from book a join author b on a.author_id = b.id");) {
+//			ResultSet rs = pstmt.executeQuery();
+//			while (rs.next()) {
+//				Long id = rs.getLong(1);
+//				String title = rs.getString(2);
+//				String authorName = rs.getString(3);
+//				String status = rs.getString(4);
+//
+//				BookVo vo = new BookVo();
+//				vo.setId(id);
+//				vo.setTitle(title);
+//				vo.setAuthorName(authorName);
+//				vo.setStatus(status);
+//
+//				result.add(vo);
+//			}
+//			rs.close();
+//		} catch (SQLException e) {
+//			System.out.println("error:" + e);
+//		}
+//
+//		return result;
+//	}
 
 	public void deleteByNo(Long no) {
-		// TODO 자동 생성된 메소드 스텁
 
 	}
 

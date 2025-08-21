@@ -10,8 +10,8 @@ public class BookVo {
 	private String categoryName;
 	
 	public BookVo(String title, int price) {
-		title = this.title;
-		price = this.price;
+		this.title = title;
+		this.price = price;
 	}
 
 	public Long getNo() {
