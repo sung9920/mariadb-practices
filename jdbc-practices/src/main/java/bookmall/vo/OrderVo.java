@@ -11,6 +11,7 @@ public class OrderVo {
 	private Long userNo;
 	private String userName;
 	private String userEmail;
+	
 	public Long getNo() {
 		return no;
 	}

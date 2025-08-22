@@ -11,6 +11,7 @@ public class CartVo {
 	private Long bookNo;
 	private String bookTitle;
 	private int bookPrice;
+	
 	public Long getNo() {
 		return no;
 	}

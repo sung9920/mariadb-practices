@@ -14,6 +14,10 @@ public class UserVo {
 		this.phone = phone;
 	}
 
+	public UserVo() {
+		
+	}
+
 	public Long getNo() {
 		return no;
 	}
