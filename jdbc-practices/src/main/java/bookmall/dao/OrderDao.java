@@ -140,7 +140,7 @@ public class OrderDao {
 	public void deleteBooksByNo(Long no) {
 		try (
 				Connection conn = getConnection(); 
-				PreparedStatement pstmt = conn.prepareStatement("delete from orders_book where book_no = ?");
+				PreparedStatement pstmt = conn.prepareStatement("delete from orders_book where orders_no = ?");
 				) {
 			pstmt.setLong(1, no);
 			pstmt.executeUpdate();

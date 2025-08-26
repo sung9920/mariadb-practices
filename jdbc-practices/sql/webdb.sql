@@ -76,3 +76,24 @@ delete from guestbook where id = 1 and password = '1234';
 select * from guestbook;
 
 TRUNCATE TABLE guestbook;
+
+--
+-- mysite: user
+--
+
+desc user;
+
+-- 회원가입
+insert into user(name, email, password, gender, join_date) values ('둘리', 'dooly@g.com', password('1234'), 'male', curdate());
+
+-- 회원리스트
+select * from user; 
+
+-- 삭제
+delete from user where id = 4;
+
+-- 로그인
+select id, name from user where email = 'sung@gmail.com' and password = password('0000');
+
+-- update
+update user set name = '박성철', password = password(''), gender = 'male' where id = 10;
