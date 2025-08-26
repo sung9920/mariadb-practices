@@ -38,22 +38,6 @@ public class UserDao {
 		return count;
 	}
 
-	private Connection getConnection() throws SQLException {
-		Connection con = null;
-
-		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-
-			String url = "jdbc:mariadb://192.168.0.176:3306/bookmall";
-			con = DriverManager.getConnection(url, "bookmall", "bookmall");
-		} catch (ClassNotFoundException e) {
-			System.out.println("Driver Class Not Found");
-
-		}
-
-		return con;
-	}
-
 	public List<UserVo> findAll() {
 		List<UserVo> result = new ArrayList<>();
 
@@ -85,16 +69,34 @@ public class UserDao {
 		return result;
 	}
 
-	public void deleteByNo(Long no) {
+	public int deleteByNo(Long no) {
+		int result = 0;
 		try (
 				Connection conn = getConnection(); 
 				PreparedStatement pstmt = conn.prepareStatement("delete from user where no = ?");
 				) {
 			pstmt.setLong(1, no);
-			pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("error:" + e);
 		}
+		return result;
 	}
 
+
+	private Connection getConnection() throws SQLException {
+		Connection con = null;
+
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+
+			String url = "jdbc:mariadb://192.168.0.176:3306/bookmall";
+			con = DriverManager.getConnection(url, "bookmall", "bookmall");
+		} catch (ClassNotFoundException e) {
+			System.out.println("Driver Class Not Found");
+
+		}
+
+		return con;
+	}
 }
